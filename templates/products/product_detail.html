@@ -4,11 +4,10 @@
 {% endblock title%}
 
 {% block content %}
-<h3 class="mt-5">Products:</h3>
+<h3>Products</h3>
 <div class="container">
     <div class="row">
-        {% for product in products %}
-        <div class="col-md-3">
+        <div class="col-md-6">
             <div class="card">
                 <div class="card-img-top">
                     <img class="w-100" src="{{product.image}}" alt="product image">
@@ -16,15 +15,26 @@
                 <div class="card-body text-center ">
                     <div class="card-title">
                         <strong>Name:</strong>{{product.name}}
+                        <strong>Price:</strong>{{product.price}}
                     </div>
-                    <div class="card-text">
-                        <strong>Price</strong>{{product.price}}
-                    </div>
-                    <button class="btn btn-info"><a class="text-white" href="{% url 'products:product_detail' product.id%}">Details</a> </button>
                 </div>
             </div>
         </div>
-        {% endfor %}
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body ">
+                    <div class="card-title">
+                        <strong>Name:</strong>{{product.name}}
+                    </div>
+                    <div class="card-text">
+                        <strong>Price</strong>{{product.price}}
+                        <p><strong>Discounted Price </strong>{{product.discount_price}}</p>
+                        <p><strong>Category</strong> {{product.category}}</p>
+                        <p><strong>Description:</strong>{{product.description}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock content%}
