@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Product
 from django.views import generic
+from django.core.paginator import Paginator
 
 # Create your views here.
 def index(request):
@@ -12,6 +13,11 @@ def index(request):
     if search_items !='' and search_items is not None:
         products = Product.objects.filter(name__icontains = search_items)
 
+
+    #paginator
+    paginator = Paginator(products,4)
+    page_number = request.GET.get('page')
+    products = paginator.get_page(page_number)
 
     return render (request,'products/index.html',{'products':products})
 
